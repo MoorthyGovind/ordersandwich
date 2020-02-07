@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
 		userOrders.forEach(userOrder -> {
 			List<UserOrderItem> listOrderItems = userOrderItemRepository.findByUserOrderId(userOrder);
 
-			Set<Item> items = listOrderItems.stream().map(orderItem -> orderItem.getItemId())
+			Set<Item> items = listOrderItems.stream().map(UserOrderItem::getItemId)
 					.collect(Collectors.toSet());
 
 			items.forEach(item -> {

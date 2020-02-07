@@ -10,6 +10,9 @@ package com.mrsandwich.constant;
  */
 public class AppConstant {
 
+	private AppConstant() {
+		
+	}
 	// Common
 	public static final String FAILURE_MESSAGE = "FAILURE";
 	public static final String SUCCESS_MESSAGE = "SUCCESS";
