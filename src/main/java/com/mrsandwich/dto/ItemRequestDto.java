@@ -1,16 +1,13 @@
 package com.mrsandwich.dto;
 
-import com.mrsandwich.common.OrderSandwichEnum.ItemType;
-
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
-public class ItemDto {
+public class ItemRequestDto {
 
 	private Integer itemId;
-	private String itemName;
-	private ItemType itemType;
+	private Integer quantity;
 	private Double price;
 }

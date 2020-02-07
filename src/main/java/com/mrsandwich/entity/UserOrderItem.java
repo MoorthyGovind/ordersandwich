@@ -19,7 +19,7 @@ public class UserOrderItem {
 	private Integer userOrderItemId;
 	@ManyToOne
 	@JoinColumn(name = "user_order_id")
-	private User userId;
+	private UserOrder userOrderId;
 	@ManyToOne
 	@JoinColumn(name = "item_id")
 	private Item itemId; 

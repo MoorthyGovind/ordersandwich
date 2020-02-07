@@ -1,6 +1,6 @@
 package com.mrsandwich.dto;
 
-import java.util.List;
+import java.util.Set;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,5 +9,5 @@ import lombok.Setter;
 @Getter
 public class ItemPreferenceResponseDto extends ResponseDto{
 
-	private List<ItemDto> itemList;
+	private Set<ItemDto> itemList;
 }
