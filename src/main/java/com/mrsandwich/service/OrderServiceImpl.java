@@ -1,6 +1,7 @@
 package com.mrsandwich.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -148,13 +149,39 @@ public class OrderServiceImpl implements OrderService {
 		return orderResponseDto;
 	}
 
+	@Override
+	public List<OrderDetailDto> getOrdersByUserId(Integer userId) throws UserNotFoundException {
+		// Check the user is present or not based on the userId.
+
+		Optional<User> user = userRepository.findById(userId);
+		if (!user.isPresent()) {
+			log.error("Exception occured in placeOrder() method: ");
+			throw new UserNotFoundException(AppConstant.USER_NOT_FOUND);
+		}
+		
+		List<OrderDetailDto> userOrderDetails= new ArrayList<>();
+		List<UserOrder> userOrders = userOrderRepository.findByUserId(user.get());
+		userOrders.forEach(userOrder -> {
+			OrderDetailDto orderDetailDto = new OrderDetailDto();
+			BeanUtils.copyProperties(userOrder, orderDetailDto);
+			List<UserOrderItem> items = userOrderItemRepository.findByUserOrderId(userOrder);
+			List<ItemDto> itemDtos = items.stream().map(userOrderItem -> convertItemEntityToDto(userOrderItem.getItemId()))
+					.collect(Collectors.toList());
+			
+			orderDetailDto.setOrderItems(itemDtos);
+			userOrderDetails.add(orderDetailDto);
+		});
+		return userOrderDetails;
+
+	}
+
 	/**
 	 * This method converts the list obtained from UI to the UserOrderItem Object
 	 * mapping by entities
 	 * 
 	 * @param itemDetail
 	 * @param userOrder
-	 * @return 
+	 * @return
 	 * @throws ItemNotFoundException
 	 */
 	private UserOrderItem convertToUserOrderItem(ItemRequestDto itemDetail, UserOrder userOrder)
