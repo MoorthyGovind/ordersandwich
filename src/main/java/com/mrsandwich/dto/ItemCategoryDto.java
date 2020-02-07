@@ -1,5 +1,7 @@
 package com.mrsandwich.dto;
 
+import java.util.List;
+
 import com.mrsandwich.common.OrderSandwichEnum.ItemType;
 
 import lombok.Getter;
@@ -7,10 +9,8 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class ItemDto {
+public class ItemCategoryDto {
 
-	private Integer itemId;
-	private String itemName;
-	private ItemType itemType;
-	private Double price;
+	private ItemType categoryName;
+	private List<ItemDto> itemList;
 }

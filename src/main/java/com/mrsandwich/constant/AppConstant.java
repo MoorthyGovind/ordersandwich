@@ -14,8 +14,20 @@ public class AppConstant {
 	public static final String FAILURE_MESSAGE = "FAILURE";
 	public static final String SUCCESS_MESSAGE = "SUCCESS";
 	public static final String NO_RECORDS_FOUND = "No Records Found";
-	
-	//User
+
+	// User
 	public static final String USER_NOT_FOUND = "User not found";
+	public static final Integer SUCCESS_STATUS_CODE = 200;
+	public static final String LOGIN_SCCUESS_MESSAGE = "User Login Successfully";
+
+	// Order
+	public static final String ORDER_NOT_FOUND = "Order not found";
 	
+	//Item
+	public static final String ITEM_NOT_FOUND = "Item not found";
+
+	// Place Order
+	public static final String PHONEPE_MSG = "Order Placed successfully. Payment throught using Phonepe";
+	public static final String PAYTM_MSG = "Order Placed successfully. Payment throught using PayTm";
+
 }
