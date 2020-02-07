@@ -39,4 +39,5 @@ public class OrderControllerTest {
 		ResponseEntity<OrderDetailResponseDto> response = orderController.getOrderDetailByOrderId(1, 101L);
 		assertEquals(200, response.getBody().getStatusCode());
 	}
+	
 }

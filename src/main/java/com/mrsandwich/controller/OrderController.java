@@ -1,5 +1,7 @@
 package com.mrsandwich.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mrsandwich.constant.AppConstant;
+import com.mrsandwich.dto.MyOrderResponseDto;
 import com.mrsandwich.dto.OrderDetailDto;
 import com.mrsandwich.dto.OrderDetailResponseDto;
 import com.mrsandwich.dto.OrderRequestDto;
@@ -84,5 +87,15 @@ public class OrderController {
 		OrderResponseDto orderResponseDto = orderService.placeOrder(orderRequestDto, userId);
 		orderResponseDto.setStatusCode(HttpStatus.OK.value());
 		return new ResponseEntity<>(orderResponseDto, HttpStatus.OK);
+	}
+	
+	@GetMapping("/{userId}/orders")
+	public ResponseEntity<MyOrderResponseDto> getOrdersByUserId(@PathVariable Integer userId) throws UserNotFoundException{
+		MyOrderResponseDto myOrderResponseDto = new MyOrderResponseDto();
+		List<OrderDetailDto> response = orderService.getOrdersByUserId(userId);
+		myOrderResponseDto.setOrderDetails(response);
+		myOrderResponseDto.setMessage(AppConstant.SUCCESS_MESSAGE);
+		myOrderResponseDto.setStatusCode(HttpStatus.OK.value());
+		return new ResponseEntity<>(myOrderResponseDto, HttpStatus.OK);
 	}
 }
