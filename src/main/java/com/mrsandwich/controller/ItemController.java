@@ -27,8 +27,9 @@ import lombok.extern.slf4j.Slf4j;
 public class ItemController {
 	@Autowired
 	ItemService itemService;
-   @GetMapping
-	ResponseEntity<List<ItemCategoryDto>> getAllItems() {
+
+	@GetMapping
+	public ResponseEntity<List<ItemCategoryDto>> getAllItems() {
 		log.info("Starting getAllItems() method in side ItemController ");
 		return ResponseEntity.ok(itemService.getAllItems());
 	}
